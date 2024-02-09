@@ -3,12 +3,15 @@
  */
 package org.example;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
+public class Main {
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+
+        Runnable task = new StockPriceFetcher()::fetchAndPrintStockPrice;
+        executor.scheduleAtFixedRate(task, 0, 5, TimeUnit.SECONDS);
     }
 }
