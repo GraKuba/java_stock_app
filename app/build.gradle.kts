@@ -16,17 +16,15 @@ repositories {
 }
 
 dependencies {
-
-    // Implementation of the yahoo finance API. 
-    implementation group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: '3.17.0'
-    
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
-
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // This dependency is used by the application.
     implementation(libs.guava)
+
+    // Implementation of the yahoo finance API. 
+    implementation("com.yahoofinance-api:YahooFinanceAPI:3.17.0")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -38,7 +36,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass.set("org.example.App")
 }
 
 tasks.named<Test>("test") {
